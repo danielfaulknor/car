@@ -9,7 +9,7 @@ logging.basicConfig(filename='/home/pi/logs/environment_box.log', filemode='w', 
 logging.basicConfig(format='%(asctime)s %(message)s')
 
 def on_publish(val):
-	logging.debug(datetime.strftime('%Y/%m/%d %H:%M:%S') + "Published data")
+	logging.debug("Published data")
 
 arduino = serial.Serial(
                 port = "/dev/ttyUSB0",
@@ -40,7 +40,6 @@ while True:
 	data = {}
 	data['humidity'] = humidity.rstrip()
 	data['temperature'] = temperature.rstrip()
-
 	mqttc.publish("environment_box", json.dumps(data))
 	mqttc.publish("relay_state", json.dumps(relaystate))
 	time.sleep(60)
