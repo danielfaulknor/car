@@ -40,6 +40,11 @@ while True:
 	data = {}
 	data['humidity'] = humidity.rstrip()
 	data['temperature'] = temperature.rstrip()
+
+	print data
+	print relaystate
+
 	mqttc.publish("environment_box", json.dumps(data))
 	mqttc.publish("relay_state", json.dumps(relaystate))
+
 	time.sleep(60)
